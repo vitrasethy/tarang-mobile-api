@@ -11,3 +11,5 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::apiResource('fields', FieldController::class);
 Route::apiResource('sport-type', SportTypeController::class);
+
+require __DIR__.'/auth.php';
