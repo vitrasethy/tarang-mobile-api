@@ -6,34 +6,34 @@ use App\Http\Requests\SportTypeRequest;
 use App\Http\Resources\SportTypeResource;
 use App\Models\SportType;
 
-class SportTypeController extends Controller
+class SportTypeController extends BaseController
 {
     public function index()
     {
-        return SportTypeResource::collection(SportType::all());
+        return $this->successResponse(SportTypeResource::collection(SportType::all()));
     }
 
     public function store(SportTypeRequest $request)
     {
-        return new SportTypeResource(SportType::create($request->validated()));
+        return $this->successResponse(new SportTypeResource(SportType::create($request->validated())));
     }
 
     public function show(SportType $sportType)
     {
-        return new SportTypeResource($sportType);
+        return $this->successResponse(new SportTypeResource($sportType));
     }
 
     public function update(SportTypeRequest $request, SportType $sportType)
     {
         $sportType->update($request->validated());
 
-        return new SportTypeResource($sportType);
+        return $this->successResponse(new SportTypeResource($sportType));
     }
 
     public function destroy(SportType $sportType)
     {
         $sportType->delete();
 
-        return response()->json();
+        return $this->successResponse([]);
     }
 }
