@@ -21,9 +21,7 @@ class AuthenticatedSessionController extends BaseController
 
         $token = $request->user()->createToken($request->email)->plainTextToken;
 
-        return response()->json([
-            'token' => $token,
-        ]);
+        return $this->successResponse(["token" => $token]);
     }
 
     /**

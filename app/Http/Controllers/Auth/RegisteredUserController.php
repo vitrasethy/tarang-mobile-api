@@ -37,8 +37,6 @@ class RegisteredUserController extends BaseController
 
         $token = $user->createToken($request->email)->plainTextToken;
 
-        return response()->json([
-            'token' => $token,
-        ]);
+        return $this->successResponse(["token" => $token]);
     }
 }
