@@ -21,7 +21,14 @@ class AuthenticatedSessionController extends BaseController
 
         $token = $request->user()->createToken($request->email)->plainTextToken;
 
-        return $this->successResponse(["token" => $token]);
+        return $this->successResponse([
+            "token" => $token,
+            "user" => [
+                'id' => $request->user()->id,
+                "name" => $request->user()->name,
+                'email' => $request->user()->email
+            ]
+        ]);
     }
 
     /**
@@ -36,5 +43,14 @@ class AuthenticatedSessionController extends BaseController
         $request->session()->regenerateToken();
 
         return response()->noContent();
+    }
+
+    public function getUser(Request $request)
+    {
+        return $this->successResponse([
+            'id' => $request->user()->id,
+            "name" => $request->user()->name,
+            'email' => $request->user()->email
+        ]);
     }
 }
