@@ -19,10 +19,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        Field::factory(10)->create();
-
         $this->call([
             SportTypeSeeder::class,
+            FieldSeeder::class,
         ]);
     }
 }
