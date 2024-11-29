@@ -20,7 +20,7 @@ class FieldController extends BaseController
 
     public function show(Field $field)
     {
-        return $this->successResponse(new FieldResource($field));
+        return $this->successResponse(new FieldResource($field->load('sportType')));
     }
 
     public function update(FieldRequest $request, Field $field)
