@@ -10,7 +10,7 @@ class FieldController extends BaseController
 {
     public function index()
     {
-        return $this->successResponse(FieldResource::collection(Field::all()));
+        return $this->successResponse(FieldResource::collection(Field::with('sportType')->get()));
     }
 
     public function store(FieldRequest $request)
