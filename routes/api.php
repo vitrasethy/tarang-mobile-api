@@ -10,4 +10,14 @@ Route::get('/user', [AuthenticatedSessionController::class, 'getUser'])->middlew
 Route::apiResource('fields', FieldController::class);
 Route::apiResource('sport-type', SportTypeController::class);
 
+Route::get('/test/fields', function () {
+    return response()->json([
+        'status' => "successful",
+        'message' => 'successful',
+        'data' => [
+            ['name' => 'soccer'],
+        ],
+    ]);
+});
+
 require __DIR__ . '/auth.php';
