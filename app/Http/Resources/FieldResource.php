@@ -14,6 +14,9 @@ class FieldResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'sportType' => new SportTypeResource($this->whenLoaded('sportType')),
+            'open_time' => $this->open_time,
+            'close_time' => $this->close_time
         ];
     }
 }
