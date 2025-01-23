@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FieldRequest;
 use App\Http\Resources\FieldResource;
 use App\Models\Field;
+use App\Models\SportType;
 
 class FieldController extends BaseController
 {
@@ -35,5 +36,12 @@ class FieldController extends BaseController
         $field->delete();
 
         return $this->successResponse([]);
+    }
+
+    public function indexBySportType(SportType $type)
+    {
+        $fields = Field::where('sport_type_id', $type->id)->with('sportType')->get();
+
+        return $this->successResponse(FieldResource::collection($fields));
     }
 }

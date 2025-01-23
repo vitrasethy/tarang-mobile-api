@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user', [AuthenticatedSessionController::class, 'getUser'])->middleware('auth:sanctum');
 
+Route::get('sport-types/{type}/fields', [FieldController::class, 'indexBySportType']);
+
 Route::apiResource('fields', FieldController::class);
 Route::apiResource('sport-type', SportTypeController::class);
 Route::apiResource('bookings', BookingController::class);
