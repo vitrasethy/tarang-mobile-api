@@ -10,7 +10,7 @@ class BookingController extends BaseController
 {
     public function index()
     {
-        return BookingResource::collection(Booking::all());
+        return $this->successResponse(BookingResource::collection(Booking::all()));
     }
 
     public function store(BookingRequest $request)
@@ -20,7 +20,7 @@ class BookingController extends BaseController
 
     public function show(Booking $booking)
     {
-        return new BookingResource($booking);
+        return $this->successResponse(new BookingResource($booking));
     }
 
     public function update(BookingRequest $request, Booking $booking)
