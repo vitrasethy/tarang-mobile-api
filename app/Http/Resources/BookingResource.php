@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 /** @mixin Booking */
 class BookingResource extends JsonResource
@@ -13,8 +14,8 @@ class BookingResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
+            'start_date' => Carbon::parse($this->start_date)->toDayDateTimeString(),
+            'end_date' => Carbon::parse($this->end_date)->toDayDateTimeString(),
 
             'field' => new FieldResource($this->whenLoaded('field')),
         ];
